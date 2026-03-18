@@ -5,7 +5,7 @@ Recall the fundamental steps of training a machine learning mode:
 
 In this image, boxes can be seen as successive layers inside a model.
 
-![[HF_ULTRASCALE_PLAYBOOK 1.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 1 1.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=20&rect=32,379,334,561|HF_ULTRASCALE_PLAYBOOK, p.20]]
 
@@ -56,7 +56,7 @@ Unlike parameter memory which is fixed by the model architecture, activation mem
 
 Now that we have a sense of how much memory each training component uses, we can compare how they scale as models grow and sequence lengths increase.
 
-![[HF_ULTRASCALE_PLAYBOOK 2.jpg]]
+![[HF_ULTRASCALE_PLAYBOOK 2 1.jpg]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=30&rect=38,400,326,555|HF_ULTRASCALE_PLAYBOOK, p.30]]
 
@@ -81,7 +81,7 @@ We can do better than that! What if we save 'some' activation values in memory s
 - what activations to select to be held in memory is a whole other detail to study by itself, which is also in Nvidia's paper on re-computation.
 - this method achieved a 70% memory reduction at a 2.7% compute time increase for a GPT-3 model.
 
-![[HF_ULTRASCALE_PLAYBOOK 3.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 3 1.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=32&rect=26,62,335,564|HF_ULTRASCALE_PLAYBOOK, p.32]]
 
@@ -143,7 +143,7 @@ With gradient accumulation, the process looks like this instead:
 5. repeat 32 times
 6. perform one optimizer step
 
-![[HF_ULTRASCALE_PLAYBOOK 1 1.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 1 1 1.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=36&rect=32,337,338,561&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.36]]
 
