@@ -39,7 +39,6 @@ So in total, it looks something like this for when we use full precision, float 
 - $m_{\text{grad}} = 4 \times N$
 - $m_{\text{opt}} = (4 + 4) \times N$
 
-
 Lastly for activation values (saved for computing gradients in back propagation), they follow a bit of a weird formula:
 
  $m_{\text{activations}} = L \cdot seq \cdot bs \cdot h \cdot \left(34 + \frac{5 \cdot n_{\text{heads}} \cdot seq}{h}\right)$

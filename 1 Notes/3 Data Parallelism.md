@@ -3,14 +3,14 @@
 
 In data parallelism, we are indeed ‘wasting’ memory in the sense that the full model is duplicated across GPUs instead of being split across them. Each GPU computes gradients on a different micro-batch, and then those gradients are averaged across all replicas so that the model weights stay identical after the update.
 
+![[ddp.gif]]
+
 This averaging is called 'all reduce', which would make the workflow something like this... but that raises the problem of overhead in communications, as GPUs have to wait around for the averaging operations to happen.
 - the 0,1,2 here means layers in a neural network.
-
 
 ![[HF_ULTRASCALE_PLAYBOOK.jpg]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=42&rect=28,273,334,351&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.42]]
-
 
 But, we can see the GLARING big overhead when the GPUs are just waiting around for the 'all reduce' to happen, what to do instead? 
 
@@ -131,22 +131,12 @@ In this way, yes our GPUs will have some overhead in communication through all-g
 
 And we can see how through this shard-ing, the memory it takes on 1 GPU falls drastically.
 
-![[120 CS/123 AI/3 NLP/4 LLM Scaling/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 8.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 8.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=69&rect=67,394,360,556|HF_ULTRASCALE_PLAYBOOK, p.69]]
 
 - But what about activations? Even though re-computation and gradient accumulation can help, they do not fully solve the problem. Activation memory still grows with sequence length and batch size, and we do not want hardware limits to force us into only short contexts or tiny batches. 
 - So if ZeRO handles model states, can we also do something about the computation itself? That's for the next chapter
-
----
-## In Summary
-
-Data parallelism keeps a full copy of the model on every GPU, lets each GPU process a different micro-batch, and then uses all-reduce to average gradients so all replicas stay identical. This improves throughput, and when combined with gradient accumulation the global batch size becomes $gbs = mbs \times grad\_acc \times dp$, but communication overhead grows as more GPUs are added, and naive DP breaks once the full model no longer fits on one GPU.
-
-ZeRO fixes this by sharding model state across GPUs instead of fully replicating it. ZeRO-1 shards optimizer states, ZeRO-2 shards optimizer states and gradients, and ZeRO-3 shards optimizer states, gradients, and parameters.
-
-The key systems trick is that models are computed layer by layer, so we do not need the whole model resident at once. During forward, GPUs gather just the needed parameters for the current or next layer; during backward, gradients are reduced and stored back as shards for the owning GPUs. Communication can also be overlapped with computation through prefetching, which is what makes ZeRO-3 practical despite all the extra data movement.
-
 
 
 
