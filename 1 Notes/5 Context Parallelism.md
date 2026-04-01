@@ -59,7 +59,7 @@ This creates a triangular workload: later GPUs have more useful work than earlie
 
 GPU 4 still needs the earlier key/value blocks 1–4, 5–8, and 9–12 to be passed around the ring so it can finish computing attention for tokens 13–16. But GPU 1 only needs its own local block 1–4. After that, it has no more useful causal attention work to do, so it can end up mostly idle while later GPUs are still computing.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 17.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 17.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=103&rect=62,309,367,563|HF_ULTRASCALE_PLAYBOOK, p.103]]
 
@@ -95,7 +95,7 @@ you could assign a balanced mixture like:
 - 
 That way, each GPU gets some cheap rows and some expensive rows, instead of one GPU getting only the hardest late-sequence rows.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 18.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 18.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=106&rect=49,324,316,552|HF_ULTRASCALE_PLAYBOOK, p.106]]
 

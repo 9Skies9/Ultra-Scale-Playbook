@@ -16,6 +16,8 @@ This is basic, simple linear algebra, but notice how we can parallelize this pro
 
 1. Column-wise parallelism
 
+![[Pasted image 20260329143010.png]]
+
 Split B by columns:
 
 $B = \left[ B_1 \;\; B_2 \right] \quad\text{where}\quad B_1 = \begin{bmatrix} 10 \\ 20 \end{bmatrix}, \qquad B_2 = \begin{bmatrix} 30 \\ 40 \end{bmatrix}$
@@ -34,6 +36,8 @@ So here, each GPU could store one column block of B, compute its own output bloc
 
 
 2. Row-wise parallelism
+
+![[Screenshot 2026-03-29 at 2.30.32 PM.png]]
 
 Now split A by columns and B by matching rows:
 
@@ -188,7 +192,7 @@ So now, we can see that we can use both tensor parallel and sequence parallel to
 - SP Regions (LayerNorm & Dropout)
 - TP Regions (Self-Attention & Linear/MLP layers)
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 12.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 12.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=88&rect=38,247,326,556|HF_ULTRASCALE_PLAYBOOK, p.88]]
 
@@ -204,19 +208,19 @@ In short:
 - SP to TP uses all-gather.
 - TP to SP uses reduce-scatter.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 13.jpg|300]]
+![[HF_ULTRASCALE_PLAYBOOK 13.jpg|300]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=91&rect=135,254,304,552|HF_ULTRASCALE_PLAYBOOK, p.91]]
 
 By switching between TP (sliced along $h$) and SP (sliced along $s$), the model never has to hold the massive, full $(b, s, h)$ activation tensor in memory. The maximum activation size per GPU drops to $\frac{b \cdot s \cdot h}{TP}$, allowing you to train on much longer context windows.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 14.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 14.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=92&rect=37,388,326,555|HF_ULTRASCALE_PLAYBOOK, p.92]]
 
 And this is how the overhead of computations look like in the forward pass.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 15.jpg]]
+![[HF_ULTRASCALE_PLAYBOOK 15.jpg]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=94&rect=36,493,328,557|HF_ULTRASCALE_PLAYBOOK, p.94]]
 

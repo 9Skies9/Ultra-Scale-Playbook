@@ -3,7 +3,7 @@
 
 But this has a huge problem, GPU 2 has to wait for GPU 1 to finish computing layers 1-4 before it can start computing layers 5-8 using GPU 1's outputs, this... is like a bane of existence in parallelism, why would you do that?
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 19.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 19.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=114&rect=37,474,327,556&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.114]]
 
@@ -11,7 +11,7 @@ Well... it's just how this technique works! Naively, it's terrible due to this i
 
 This approach is called the all forward, all backward schedule. 
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 20.jpg]]
+![[HF_ULTRASCALE_PLAYBOOK 20.jpg]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=114&rect=38,360,326,439&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.114]]
 
@@ -19,7 +19,7 @@ There is another one called 1 forward, 1 backward schedule, but... eh, I don't w
 
 The idea is simply, instead of performing all forward passes then the backward passes, it starts performing backward passes whenever a micro batch's forward pass is completed.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 21.jpg]]
+![[HF_ULTRASCALE_PLAYBOOK 21.jpg]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=118&rect=37,474,327,556&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.118]]
 
@@ -38,7 +38,7 @@ So with 16 layers and 4 GPUs, a simple interleaved setup might look like:
 
 This... create some crazy scheduling, it reduce pipeline bubbles and idle time, but it comes with more overhead and more complexity.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 22.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 22.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=124&rect=37,470,327,556&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.124]]
 

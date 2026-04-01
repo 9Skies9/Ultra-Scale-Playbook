@@ -25,7 +25,7 @@ A very blunt summary:
 
 But... it's like suddenly having to juggle 8 new balls altogether, and having no idea how they interact with each other. We can compare them, and see which ones work together, which ones conflict one another.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 26.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 26.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=152&rect=37,241,327,519&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.152]]
 
@@ -40,7 +40,7 @@ Pipeline parallelism assigns different contiguous layer blocks to different GPUs
 
 ZeRO-3 shards parameters (and gradients, and optimizer states, but that's another story), so each GPU holds only a fraction of a layer’s states at a time. When a layer is needed, its parameters are gathered, used for computation, and then released or reshaped as needed.
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 24.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 24.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=143&rect=70,372,357,519&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.143]]
 
@@ -57,7 +57,7 @@ Expert parallelism is for Mixture-of-Experts models. Instead of every GPU storin
 
 They are all aimed for different purposes! And that's the fun part of all of this!
 
-![[120 CS/123 AI/3 NLP/4 Ultra Scale Playbook/1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK 25.jpg|500]]
+![[HF_ULTRASCALE_PLAYBOOK 25.jpg|500]]
 
 [[HF_ULTRASCALE_PLAYBOOK.pdf#page=148&rect=37,113,325,272&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.148]]
 
