@@ -1,5 +1,5 @@
 > [!PDF|yellow] [[HF_ULTRASCALE_PLAYBOOK.pdf#page=111&selection=27,1,35,63&color=yellow|HF_ULTRASCALE_PLAYBOOK, p.111]]
-> > ipeline parallelism is a simple but powerful technique — we split our model’s layers across multiple GPUs! For example, if we have 8 GPUs, we could put layers 1–4 on GPU 1, layers 5–8 on GPU 2, and so on. This way, each GPU only needs to store and process a portion of the model’s layers, significantly reducing the memory requirements per GPU.
+> > Pipeline parallelism is a simple but powerful technique — we split our model’s layers across multiple GPUs! For example, if we have 8 GPUs, we could put layers 1–4 on GPU 1, layers 5–8 on GPU 2, and so on. This way, each GPU only needs to store and process a portion of the model’s layers, significantly reducing the memory requirements per GPU.
 
 But this has a huge problem, GPU 2 has to wait for GPU 1 to finish computing layers 1-4 before it can start computing layers 5-8 using GPU 1's outputs, this... is like a bane of existence in parallelism, why would you do that?
 
