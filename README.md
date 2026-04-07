@@ -7,7 +7,6 @@ This repository contains my personal chapter-by-chapter follow-along work based 
 ## Original Course Attribution
 The original learning material and chapter structure come from the Hugging Face Ultrascale Playbook:
 - Source: [nanotron/ultrascale-playbook](https://huggingface.co/spaces/nanotron/ultrascale-playbook)
-- Original PDF: `1 Notes/attachments/HF_ULTRASCALE_PLAYBOOK.pdf`
 
 I do not claim the original content as my own. This repository is my personal learning implementation, notes, and homework-style practice while following that material.
 
@@ -28,5 +27,3 @@ Current top-level structure:
 
 ## End Note
 This project is a homework-style follow-along learning archive built over time.
-
-This `README.md` was created/updated by Codex specifically to improve repository organization and publish-readiness. That Codex attribution applies to this README file only.
