@@ -1,6 +1,6 @@
-# LLM From Scratch - Personal HW + Notes
+# Ultra Scale Playbook - Personal HW + Notes
 
-Notes + homework follow-along for studying LLMs from scratch.
+Notes + homework follow-along for studying LLM training at scale (Ultrascale Playbook).
 
 This repository contains my personal chapter-by-chapter follow-along work based on the original materials.
 
@@ -15,7 +15,7 @@ I do not claim the original content as my own. This repository is my personal le
 Current top-level structure:
 
 - `1 Notes/` - Personal chapter notes (`.md`) and note attachments
-- `2 Picotron Replica/` - Notebook/code implementations by chapter
+- `2 Code/` - Notebook/code implementations by chapter
 
 ## Environment Setup
 1. Install Python 3.
@@ -23,7 +23,7 @@ Current top-level structure:
 3. Install notebook and ML dependencies as needed (for example: Jupyter, PyTorch, NumPy, pandas, matplotlib).
 
 ## Running Notes
-- Most chapter work is in Jupyter notebooks under `2 Picotron Replica/`.
+- Most chapter work is in Jupyter notebooks under `2 Code/`.
 - Notes are organized by chapter under `1 Notes/`.
 
 ## End Note
